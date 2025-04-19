@@ -1,0 +1,9 @@
+<h1 class="mb-4">My Blog</h1>
+
+{% if current_user.is_authenticated %}
+    <p>Logged in as <strong>{{ current_user.username }}</strong> | <a href="{{ url_for('logout') }}">Logout</a></p>
+{% else %}
+    <a class="btn btn-primary mb-3" href="{{ url_for('login') }}">Login</a>
+{% endif %}
+
+<a class="btn btn-success mb-3" href="{{ url_for('create') }}">Create New Post</a>
