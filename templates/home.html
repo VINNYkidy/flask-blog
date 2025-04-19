@@ -1,13 +1,22 @@
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-
 <!DOCTYPE html>
 <html>
 <head>
     <title>Vinny’s Blog</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body style="font-family: Arial; text-align: center;">
+<body>
     <h1>Welcome to Vinny’s Blog</h1>
-    <p>Latest articles, tech tips, and personal stories.</p>
+    <p>Latest blog posts:</p>
+
+    {% for post in posts %}
+        <div class="post">
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.content }}</p>
+            <small>Written by {{ post.author }}</small>
+            <hr>
+        </div>
+    {% endfor %}
+
     <a href="/about">About Me</a>
 </body>
 </html>
