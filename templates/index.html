@@ -1,9 +1,20 @@
-<h1 class="mb-4">My Blog</h1>
-
-{% if current_user.is_authenticated %}
-    <p>Logged in as <strong>{{ current_user.username }}</strong> | <a href="{{ url_for('logout') }}">Logout</a></p>
-{% else %}
-    <a class="btn btn-primary mb-3" href="{{ url_for('login') }}">Login</a>
-{% endif %}
-
-<a class="btn btn-success mb-3" href="{{ url_for('create') }}">Create New Post</a>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Flask Blog</title>
+</head>
+<body>
+    <h1>Welcome to My Blog</h1>
+    {% for post in posts %}
+        <div style="border:1px solid #ccc; padding:10px; margin:10px;">
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.content }}</p>
+            <a href="{{ url_for('edit', post_id=post.id) }}">Edit</a>
+            <form action="{{ url_for('delete', post_id=post.id) }}" method="POST" style="display:inline;">
+                <button type="submit">Delete</button>
+            </form>
+        </div>
+    {% endfor %}
+    <a href="{{ url_for('create') }}">Add New Post</a>
+</body>
+</html>

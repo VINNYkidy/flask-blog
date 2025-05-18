@@ -1,25 +1,10 @@
-from flask import Flask, render_template
-
-app = Flask(__name__)
-
-# Sample blog posts (later we can store them in a database)
-posts = [
-    {
-        'title': 'My First Blog Post',
-        'content': 'This is my first post on Flask!',
-        'author': 'Vinny'
-    },
-    {
-        'title': 'Learning Flask',
-        'content': 'Today I learned how to use templates in Flask.',
-        'author': 'Vinny'
-    }
-]
-
-@app.route('/')
-def home():
-    return render_template('home.html', posts=posts)
-
-@app.route('/about')
-def about():
-    return render_template('about.html')
+@app.route('/create', methods=['GET', 'POST'])
+def create():
+    if request.method == 'POST':
+        title = request.form['title']
+        content = request.form['content']
+        new_post = Post(title=title, content=content)
+        db.session.add(new_post)
+        db.session.commit()
+        return redirect(url_for('index'))
+    return render_template('create.html')
