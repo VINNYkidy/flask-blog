@@ -1,6 +1,21 @@
-<h1>Create New Post</h1>
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<!-- Yaliyomo hapa -->
+{% endblock %}
+{% extends 'base.html' %}
+{% block title %}Create Post{% endblock %}
+{% block content %}
+<h2>Create a New Post</h2>
 <form method="POST">
-  <input type="text" name="title" placeholder="Title"><br>
-  <textarea name="content" placeholder="Content"></textarea><br>
-  <button type="submit">Save</button>
+   <div class="mb-3">
+       <label class="form-label">Title</label>
+       <input type="text" class="form-control" name="title" required>
+   </div>
+   <div class="mb-3">
+       <label class="form-label">Content</label>
+       <textarea class="form-control" name="content" rows="5" required></textarea>
+   </div>
+   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+{% endblock %}
