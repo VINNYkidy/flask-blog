@@ -1,3 +1,7 @@
+from flask import flask
+
+app = flask(VINNYkidy)
+
 @app.route('/create', methods=['GET', 'POST'])
 def create():
     if request.method == 'POST':
